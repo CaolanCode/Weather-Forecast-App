@@ -30,4 +30,42 @@
   border: none;
 }
 
-/* */
+/* top containers */
+.city-name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.days-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+}
+.day-container{
+  width: 15vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.day-title, .day-condition{
+  grid-column: 1 / span 2;
+  text-align: center;
+}
+.temp-container{
+  display: flex;
+  flex-direction: column;
+}
+.day-temp{
+  flex: 1;
+}
+.min-temp, .max-temp{
+  display: flex;
+  justify-content: center;
+}
+.max-temp{
+  align-items: end;
+}
+.min-temp{
+  align-items:baseline;
+  border-top: 1px solid black;
+}
