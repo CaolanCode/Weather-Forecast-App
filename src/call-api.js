@@ -8,7 +8,6 @@ export async function getWeatherData(city) {
 export async function parseWeatherData(city) {
   try{
     const weatherData = await getWeatherData(city)
-    console.log(weatherData)
     // location
     const name = weatherData.location.name
     const lat = weatherData.location.lat
@@ -53,7 +52,6 @@ export async function parseWeatherData(city) {
       const day = [summary, hours]
       forecast.push(day)
     }
-    console.log(forecast)
     return forecast
   } catch(error) {
     console.error('Error fetch weather data: ', error)
