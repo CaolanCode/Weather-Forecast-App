@@ -8,6 +8,7 @@ export async function getWeatherData(city) {
 export async function parseWeatherData(city) {
   try{
     const weatherData = await getWeatherData(city)
+    console.log(weatherData)
     // location
     const name = weatherData.location.name
     // forecast average/min/max
@@ -18,33 +19,29 @@ export async function parseWeatherData(city) {
       const sunrise = weatherData.forecast.forecastday[i].astro.sunrise
       const sunset = weatherData.forecast.forecastday[i].astro.sunset
       const date = weatherData.forecast.forecastday[i].date
-      const avgTempC = weatherData.forecast.forecastday[i].day.avgtemp_c
-      const avgTempF = weatherData.forecast.forecastday[i].day.avgtemp_f
       const minTempC = weatherData.forecast.forecastday[i].day.mintemp_c
       const minTempF = weatherData.forecast.forecastday[i].day.mintemp_f
       const maxTempC = weatherData.forecast.forecastday[i].day.maxtemp_c
       const maxTempF = weatherData.forecast.forecastday[i].day.maxtemp_f
       const condIcon = weatherData.forecast.forecastday[i].day.condition.icon
       const condName = weatherData.forecast.forecastday[i].day.condition.text
-      const totalPrecipIn = weatherData.forecast.forecastday[i].day.totalprecip_in 
-      const totalPrecipMM = weatherData.forecast.forecastday[i].day.totalprecip_mm 
-      const uv = weatherData.forecast.forecastday[i].day.uv
-      const summary = {moonrise, moonset, sunrise, sunset, date, avgTempC, avgTempF, minTempC, minTempF, maxTempC, maxTempF, condIcon, condName, totalPrecipIn, totalPrecipMM, uv}
+      const summary = {moonrise, moonset, sunrise, sunset, date, minTempC, minTempF, maxTempC, maxTempF, condIcon, condName}
       // forecast pre hour
       const hours = []
       for(let j = 0; j < 24; j++) {
         const hourCondIcon = weatherData.forecast.forecastday[i].hour[j].condition.icon
-        const hourCondText = weatherData.forecast.forecastday[i].hour[j].condition.text
         const hourPrecipIn = weatherData.forecast.forecastday[i].hour[j].precip_in
         const hourPrecipMM = weatherData.forecast.forecastday[i].hour[j].precip_mm
         const hourTempC = weatherData.forecast.forecastday[i].hour[j].temp_c
         const hourTempF = weatherData.forecast.forecastday[i].hour[j].temp_f
         const hourDateTime = weatherData.forecast.forecastday[i].hour[j].time
         const hourTime = hourDateTime.substring(hourDateTime.length - 5)
-        const hourUV = weatherData.forecast.forecastday[i].hour[j].uv
         const hourWindKPH = weatherData.forecast.forecastday[i].hour[j].wind_kph
         const hourWindMPH = weatherData.forecast.forecastday[i].hour[j].wind_mph
-        const hour = {hourCondIcon, hourCondText, hourPrecipIn, hourPrecipMM, hourTempC, hourTempF, hourTime, hourUV, hourWindKPH, hourWindMPH}
+        const gustKPH = weatherData.forecast.forecastday[i].hour[j].gust_kph
+        const gustMPH = weatherData.forecast.forecastday[i].hour[j].gust_mph
+        const windDegree = weatherData.forecast.forecastday[i].hour[j].wind_degree
+        const hour = {hourCondIcon, hourPrecipIn, hourPrecipMM, hourTempC, hourTempF, hourTime, hourWindKPH, hourWindMPH, gustKPH, gustMPH, windDegree}
         hours.push(hour)
       }
       const day = [summary, hours]
