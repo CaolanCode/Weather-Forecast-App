@@ -1,5 +1,6 @@
 import { parseWeatherData } from "./call-api";
 import { header } from "./ui";
+import './styles/style.css'
 
 
 // google symbol link 

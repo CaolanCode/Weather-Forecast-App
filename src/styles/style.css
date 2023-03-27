@@ -1,0 +1,31 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+/* header */
+.header-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.input-container{
+  display: flex;
+  align-items: center;
+  padding: 1vh 1vw;
+  border-radius: 3vh;
+}
+.location-input{
+  padding: 1vh 0;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+.input-btn{
+  background: transparent;
+  padding-top: .3vh;
+  cursor: pointer;
+  border: none;
+}
