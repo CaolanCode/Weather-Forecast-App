@@ -1,5 +1,5 @@
 export async function getWeatherData(city) {
-  const apiKey = ""
+  const apiKey = "b08d495197a947a5a54161628232303"
   const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no&alerts=no`
   const response = await fetch(apiUrl)
   return response.json()
@@ -54,7 +54,7 @@ export async function parseWeatherData(city) {
       forecast.push(day)
     }
     console.log(forecast)
-
+    return forecast
   } catch(error) {
     console.error('Error fetch weather data: ', error)
   }
