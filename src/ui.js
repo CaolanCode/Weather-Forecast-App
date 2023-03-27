@@ -30,6 +30,11 @@ export const displayWeather = (data) => {
   allDaysContainer.appendChild(city)
   const dayTiles = createDayTile(data)
   allDaysContainer.appendChild(dayTiles)
+  // hour container
+  const hourContainer = document.createElement('div')
+  hourContainer.classList.add('hour-container')
+  console.log(data)
+
   return allDaysContainer
 
 }
@@ -42,7 +47,7 @@ const createDayTile = (data) => {
     if(i === 1) {
       day = 'Tomorrow'
     } else if(i > 1) {
-      const dateString = data[3+i][0].date
+      const dateString = data[1+i][0].date
       const date = new Date(dateString)
       const weekday = new Array(7)
       weekday[0]="Sunday";
@@ -64,7 +69,7 @@ const createDayTile = (data) => {
     // icon 
     const iconImage = document.createElement('img')
     iconImage.classList.add('day-icon')
-    iconImage.src = data[3+i][0].condIcon
+    iconImage.src = data[1+i][0].condIcon
     dayContainer.appendChild(iconImage)
     // temp 
     const tempContainer = document.createElement('div')
@@ -72,8 +77,8 @@ const createDayTile = (data) => {
     const maxTemp = document.createElement('div')
     maxTemp.classList.add('day-temp')
     maxTemp.classList.add('max-temp')
-    const max = data[3+i][0].maxTempC
-    const min = data[3+i][0].minTempC
+    const max = data[1+i][0].maxTempC
+    const min = data[1+i][0].minTempC
     maxTemp.innerText = max
     tempContainer.appendChild(maxTemp)
     if(max !== min) {
@@ -87,9 +92,13 @@ const createDayTile = (data) => {
     // condition
     const condition = document.createElement('div')
     condition.classList.add('day-condition')
-    condition.innerText = data[3+i][0].condName
+    condition.innerText = data[1+i][0].condName
     dayContainer.appendChild(condition)
     container.appendChild(dayContainer)
   }
   return container
+}
+
+const createHour = () => {
+
 }

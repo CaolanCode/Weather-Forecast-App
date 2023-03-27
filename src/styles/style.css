@@ -61,6 +61,7 @@
 .min-temp, .max-temp{
   display: flex;
   justify-content: center;
+  font-size: .8rem;
 }
 .max-temp{
   align-items: end;
