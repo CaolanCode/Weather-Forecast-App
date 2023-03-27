@@ -19,29 +19,15 @@ export const header = () => {
   return container
 }
 
-export const displayWeather = (data) => {
+export const displayDays = (data) => {
   // days container
-  const allDaysContainer = document.createElement('div')
-  allDaysContainer.classList.add('top-container')
+  const container = document.createElement('div')
+  container.classList.add('days-container')
   // city
   const city = document.createElement('div')
   city.classList.add('city-name')
   city.innerText = data[0]
-  allDaysContainer.appendChild(city)
-  const dayTiles = createDayTile(data)
-  allDaysContainer.appendChild(dayTiles)
-  // hour container
-  const hourContainer = document.createElement('div')
-  hourContainer.classList.add('hour-container')
-  console.log(data)
-
-  return allDaysContainer
-
-}
-
-const createDayTile = (data) => {
-  const container = document.createElement('div')
-  container.classList.add('days-container')
+  container.appendChild(city)
   for(let i = 0; i < 3; i++) {
     let day = 'Today'
     if(i === 1) {
@@ -99,6 +85,50 @@ const createDayTile = (data) => {
   return container
 }
 
-const createHour = () => {
+export const createHourDisplay = (data) => {
+  const container = document.createElement('div')
+  container.classList.add('all-hours-container')
+  for(let i = 0; i < 3; i++) {
+    for(let j = 0; j < 24; j++) {
+      let hour = document.createElement('div')
+      hour.classList.add('single-hour-container')
 
+      let time = document.createElement('div')
+      time.classList.add('hour-time')
+      time.textContent = data[1+i][1][j].hourTime
+      hour.appendChild(time)
+
+      let sun = document.createElement('div')
+      sun.classList.add('hour-sun')
+      hour.appendChild(sun)
+
+      let icon = document.createElement('img')
+      icon.classList.add('hour-icon')
+      icon.src = data[1+i][1][j].hourCondIcon
+      hour.appendChild(icon)
+
+      let percip = document.createElement('div')
+      percip.classList.add('hour-percip')
+      percip.textContent = data[1+i][1][j].hourPercipMM
+      hour.appendChild(percip)
+
+      let windSpeed = document.createElement('div') 
+      windSpeed.classList.add('hour-windspeed')
+      windSpeed.textContent = data[1+i][1][j].hourWindKPH
+      hour.appendChild(windSpeed)
+
+      let gust = document.createElement('div')
+      gust.classList.add('hour-gust')
+      gust.textContent = data[1+i][1][j].gustKPH
+      hour.appendChild(gust)
+
+      let temp = document.createElement('div')
+      temp.classList.add('hour-temp')
+      temp.textContent = data[1+i][1][j].hourTempC
+      hour.appendChild(temp)
+
+      container.appendChild(hour)
+    }
+  }
+  return container
 }

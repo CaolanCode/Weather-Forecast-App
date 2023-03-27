@@ -35,12 +35,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-column: 1 / span 3;
 }
 .days-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
 }
 .day-container{
   width: 15vw;
@@ -69,4 +69,7 @@
 .min-temp{
   align-items:baseline;
   border-top: 1px solid black;
+}
+.day-icon{
+  width: 100%;
 }
