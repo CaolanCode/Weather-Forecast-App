@@ -33,7 +33,7 @@ export const displayDays = (data) => {
     if(i === 1) {
       day = 'Tomorrow'
     } else if(i > 1) {
-      const dateString = data[1+i][0].date
+      const dateString = data[2+i][0].date
       const date = new Date(dateString)
       const weekday = new Array(7)
       weekday[0]="Sunday";
@@ -55,7 +55,7 @@ export const displayDays = (data) => {
     // icon 
     const iconImage = document.createElement('img')
     iconImage.classList.add('day-icon')
-    iconImage.src = data[1+i][0].condIcon
+    iconImage.src = data[2+i][0].condIcon
     dayContainer.appendChild(iconImage)
     // temp 
     const tempContainer = document.createElement('div')
@@ -63,8 +63,8 @@ export const displayDays = (data) => {
     const maxTemp = document.createElement('div')
     maxTemp.classList.add('day-temp')
     maxTemp.classList.add('max-temp')
-    const max = data[1+i][0].maxTempC
-    const min = data[1+i][0].minTempC
+    const max = data[2+i][0].maxTempC
+    const min = data[2+i][0].minTempC
     maxTemp.innerText = max
     tempContainer.appendChild(maxTemp)
     if(max !== min) {
@@ -78,7 +78,7 @@ export const displayDays = (data) => {
     // condition
     const condition = document.createElement('div')
     condition.classList.add('day-condition')
-    condition.innerText = data[1+i][0].condName
+    condition.innerText = data[2+i][0].condName
     dayContainer.appendChild(condition)
     container.appendChild(dayContainer)
   }
@@ -93,19 +93,23 @@ export const createHourDisplay = (data) => {
   const hourLabels = createHourLabel()
   container.appendChild(hourLabels)
 
-  const fullSunrise = data[1][0].sunrise
+  const fullSunrise = data[3][0].sunrise
   const sunrise = Number(fullSunrise.slice(0,2))
-  const fullSunset = data[1][0].sunset
+  const fullSunset = data[3][0].sunset
   const sunset = Number(fullSunset.slice(0,2)) + 12
+  const currentHour = data[1]
 
   for(let i = 0; i < 3; i++) {
     for(let j = 0; j < 24; j++) {
+      if(i === 0 && j === 0) {
+        j = currentHour
+      }
       let hour = document.createElement('div')
       hour.classList.add('single-hour-container')
 
       let time = document.createElement('div')
       time.classList.add('hour-time')
-      let hourMin = data[1+i][1][j].hourTime
+      let hourMin = data[2+i][1][j].hourTime
       time.textContent = hourMin
       hour.appendChild(time)
 
@@ -121,27 +125,27 @@ export const createHourDisplay = (data) => {
 
       let icon = document.createElement('img')
       icon.classList.add('hour-icon')
-      icon.src = data[1+i][1][j].hourCondIcon
+      icon.src = data[2+i][1][j].hourCondIcon
       hour.appendChild(icon)
       
       let percip = document.createElement('div')
       percip.classList.add('hour-percip')
-      percip.textContent = data[1+i][1][j].hourPercipMM
+      percip.textContent = data[2+i][1][j].hourPercipMM
       hour.appendChild(percip)
 
       let windSpeed = document.createElement('div') 
       windSpeed.classList.add('hour-wind')
-      windSpeed.textContent = data[1+i][1][j].hourWindKPH
+      windSpeed.textContent = data[2+i][1][j].hourWindKPH
       hour.appendChild(windSpeed)
 
       let gust = document.createElement('div')
       gust.classList.add('hour-text')
-      gust.textContent = data[1+i][1][j].gustKPH
+      gust.textContent = data[2+i][1][j].gustKPH
       hour.appendChild(gust)
 
       let temp = document.createElement('div')
       temp.classList.add('hour-text')
-      temp.textContent = data[1+i][1][j].hourTempC
+      temp.textContent = data[2+i][1][j].hourTempC
       hour.appendChild(temp)
 
       container.appendChild(hour)

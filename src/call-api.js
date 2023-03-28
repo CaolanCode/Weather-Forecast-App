@@ -8,10 +8,14 @@ export async function getWeatherData(city) {
 export async function parseWeatherData(city) {
   try{
     const weatherData = await getWeatherData(city)
+    console.log(weatherData)
     // location
     const name = weatherData.location.name
+    // time 
+    const dateTime = weatherData.location.localtime
+    const time = Number(dateTime.slice(11,13))
     // forecast average/min/max
-    const forecast = [name]
+    const forecast = [name, time]
     for(let i = 0; i < 3; i++) {
       const moonrise = weatherData.forecast.forecastday[i].astro.moonrise
       const moonset = weatherData.forecast.forecastday[i].astro.moonset
