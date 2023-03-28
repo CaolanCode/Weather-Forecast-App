@@ -25,15 +25,3 @@ inputBtn.addEventListener('click', async () => {
   hourSlide = createHourDisplay(data)
   document.body.appendChild(hourSlide)
 })
-
-// hour slider
-const sliderContainer = document.querySelector('.slider-container')
-const slider = document.querySelector('.slider')
-
-slider.oninput = function() {
-  const value = this.value
-  const max = this.max
-  const width = sliderContainer.offsetWidth - slider.offsetWidth
-  const position = (value / max) * width
-  slider.style.left = position + "px"
-}
