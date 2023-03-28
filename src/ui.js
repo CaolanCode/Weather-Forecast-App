@@ -88,6 +88,10 @@ export const displayDays = (data) => {
 export const createHourDisplay = (data) => {
   const container = document.createElement('div')
   container.classList.add('all-hours-container')
+
+  const hourLabels = createHourLabel()
+  container.appendChild(hourLabels)
+
   for(let i = 0; i < 3; i++) {
     for(let j = 0; j < 24; j++) {
       let hour = document.createElement('div')
@@ -99,31 +103,31 @@ export const createHourDisplay = (data) => {
       hour.appendChild(time)
 
       let sun = document.createElement('div')
-      sun.classList.add('hour-sun')
+      sun.classList.add('hour-text')
       hour.appendChild(sun)
 
       let icon = document.createElement('img')
       icon.classList.add('hour-icon')
       icon.src = data[1+i][1][j].hourCondIcon
       hour.appendChild(icon)
-
+      
       let percip = document.createElement('div')
       percip.classList.add('hour-percip')
       percip.textContent = data[1+i][1][j].hourPercipMM
       hour.appendChild(percip)
 
       let windSpeed = document.createElement('div') 
-      windSpeed.classList.add('hour-windspeed')
+      windSpeed.classList.add('hour-wind')
       windSpeed.textContent = data[1+i][1][j].hourWindKPH
       hour.appendChild(windSpeed)
 
       let gust = document.createElement('div')
-      gust.classList.add('hour-gust')
+      gust.classList.add('hour-text')
       gust.textContent = data[1+i][1][j].gustKPH
       hour.appendChild(gust)
 
       let temp = document.createElement('div')
-      temp.classList.add('hour-temp')
+      temp.classList.add('hour-text')
       temp.textContent = data[1+i][1][j].hourTempC
       hour.appendChild(temp)
 
@@ -131,4 +135,58 @@ export const createHourDisplay = (data) => {
     }
   }
   return container
+}
+
+const createHourLabel = () => {
+  const hourLabels = document.createElement('div')
+  hourLabels.classList.add('hour-labels-container')
+
+  const timeLabel = document.createElement('div') 
+  timeLabel.classList.add('time-label')
+  timeLabel.textContent = 'Time'
+  hourLabels.appendChild(timeLabel)
+
+  const sunLabel = document.createElement('div')
+  sunLabel.classList.add('hour-label')
+  sunLabel.textContent = 'Sun'
+  hourLabels.appendChild(sunLabel)
+
+  const iconLabel = document.createElement('div')
+  iconLabel.classList.add('icon-label')
+  iconLabel.textContent = 'Weather'
+  hourLabels.appendChild(iconLabel)
+
+  const percipLabel = document.createElement('div')
+  percipLabel.classList.add('hour-label')
+  percipLabel.textContent = 'Percipitation'
+  hourLabels.appendChild(percipLabel)
+
+  const percipMeasure = document.createElement('div')
+  percipMeasure.classList.add('measurement-label')
+  percipMeasure.setAttribute('id', 'percip-measurement') 
+  percipMeasure.textContent = 'mm'
+  hourLabels.appendChild(percipMeasure)
+
+  const windLabel = document.createElement('div')
+  windLabel.classList.add('hour-label')
+  windLabel.textContent = 'Wind'
+  hourLabels.appendChild(windLabel)
+
+  const windSpeedLabel = document.createElement('div')
+  windSpeedLabel.classList.add('measurement-label')
+  windSpeedLabel.setAttribute('id', 'wind-measurement') 
+  windSpeedLabel.textContent = 'Km/h'
+  hourLabels.appendChild(windSpeedLabel)
+
+  const gustLabel = document.createElement('div')
+  gustLabel.classList.add('hour-label')
+  gustLabel.textContent = 'Gust'
+  hourLabels.appendChild(gustLabel)
+
+  const tempLabel = document.createElement('div')
+  tempLabel.classList.add('hour-label')
+  tempLabel.textContent = 'Temperature'
+  hourLabels.appendChild(tempLabel)
+
+  return hourLabels
 }

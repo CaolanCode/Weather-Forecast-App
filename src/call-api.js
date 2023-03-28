@@ -29,8 +29,8 @@ export async function parseWeatherData(city) {
       const hours = []
       for(let j = 0; j < 24; j++) {
         const hourCondIcon = weatherData.forecast.forecastday[i].hour[j].condition.icon
-        const hourPrecipIn = weatherData.forecast.forecastday[i].hour[j].precip_in
-        const hourPrecipMM = weatherData.forecast.forecastday[i].hour[j].precip_mm
+        const hourPercipIn = weatherData.forecast.forecastday[i].hour[j].precip_in
+        const hourPercipMM = weatherData.forecast.forecastday[i].hour[j].precip_mm
         const hourTempC = weatherData.forecast.forecastday[i].hour[j].temp_c
         const hourTempF = weatherData.forecast.forecastday[i].hour[j].temp_f
         const hourDateTime = weatherData.forecast.forecastday[i].hour[j].time
@@ -40,7 +40,7 @@ export async function parseWeatherData(city) {
         const gustKPH = weatherData.forecast.forecastday[i].hour[j].gust_kph
         const gustMPH = weatherData.forecast.forecastday[i].hour[j].gust_mph
         const windDegree = weatherData.forecast.forecastday[i].hour[j].wind_degree
-        const hour = {hourCondIcon, hourPrecipIn, hourPrecipMM, hourTempC, hourTempF, hourTime, hourWindKPH, hourWindMPH, gustKPH, gustMPH, windDegree}
+        const hour = {hourCondIcon, hourPercipIn, hourPercipMM, hourTempC, hourTempF, hourTime, hourWindKPH, hourWindMPH, gustKPH, gustMPH, windDegree}
         hours.push(hour)
       }
       const day = [summary, hours]

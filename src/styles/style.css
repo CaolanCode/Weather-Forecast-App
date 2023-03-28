@@ -73,3 +73,27 @@
 .day-icon{
   width: 100%;
 }
+
+/* hour slide */
+.all-hours-container{
+  display: flex;
+}
+.hour-time, .time-label, .hour-text, .hour-label, .measurement-label{
+  height: 3vh;
+}
+.hour-icon, .icon-label, .hour-wind, .hour-percip{
+  height: 6vh;
+}
+.hour-icon{
+  display: block;
+}
+.hour-time, .time-label, .hour-text, .hour-label, .measurement-label, .hour-icon, .icon-label, .hour-wind, .hour-percip{
+  display: flex;
+  align-items: center;
+}
+.hour-time, .hour-text, .hour-icon, .hour-percip, .hour-wind{
+  justify-content: center;
+}
+.hour-label, .icon-label, .measurement-label{
+  justify-content: start;
+}
