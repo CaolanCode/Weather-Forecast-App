@@ -86,12 +86,18 @@ export const displayDays = (data) => {
 }
 
 export const createHourDisplay = (data) => {
-  console.log(data)
-  const container = document.createElement('div')
-  container.classList.add('all-hours-container')
+  const sliderContainer = document.createElement('div')
+  sliderContainer.classList.add('slider-container')
 
   const hourLabels = createHourLabel()
-  container.appendChild(hourLabels)
+  sliderContainer.appendChild(hourLabels)
+
+  const allHoursContainer = document.createElement('div')
+  allHoursContainer.classList.add('all-hours-container')
+  
+  const slider = document.createElement('div')
+  slider.classList.add('slider')
+  allHoursContainer.appendChild(slider)
 
   const fullSunrise = data[3][0].sunrise
   const sunrise = Number(fullSunrise.slice(0,2))
@@ -148,10 +154,11 @@ export const createHourDisplay = (data) => {
       temp.textContent = data[2+i][1][j].hourTempC
       hour.appendChild(temp)
 
-      container.appendChild(hour)
+      allHoursContainer.appendChild(hour)
     }
   }
-  return container
+  sliderContainer.appendChild(allHoursContainer)
+  return sliderContainer
 }
 
 const createHourLabel = () => {

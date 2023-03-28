@@ -8,7 +8,6 @@ export async function getWeatherData(city) {
 export async function parseWeatherData(city) {
   try{
     const weatherData = await getWeatherData(city)
-    console.log(weatherData)
     // location
     const name = weatherData.location.name
     // time 

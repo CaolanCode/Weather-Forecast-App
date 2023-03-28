@@ -11,6 +11,7 @@ document.head.appendChild(link)
 
 document.body.appendChild(header())
 
+// location input
 const inputBtn = document.querySelector('.input-btn')
 inputBtn.addEventListener('click', async () => {
   const city = document.querySelector('.location-input').value
@@ -24,3 +25,15 @@ inputBtn.addEventListener('click', async () => {
   hourSlide = createHourDisplay(data)
   document.body.appendChild(hourSlide)
 })
+
+// hour slider
+const sliderContainer = document.querySelector('.slider-container')
+const slider = document.querySelector('.slider')
+
+slider.oninput = function() {
+  const value = this.value
+  const max = this.max
+  const width = sliderContainer.offsetWidth - slider.offsetWidth
+  const position = (value / max) * width
+  slider.style.left = position + "px"
+}
