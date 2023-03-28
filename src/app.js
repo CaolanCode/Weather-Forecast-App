@@ -20,8 +20,6 @@ inputBtn.addEventListener('click', async () => {
   const days = displayDays(data)
   document.body.appendChild(days)
   // hours
-  let hourSlide = document.createElement('div')
-  hourSlide.classList.add('hour-container')
-  hourSlide = createHourDisplay(data)
+  const hourSlide = createHourDisplay(data)
   document.body.appendChild(hourSlide)
 })

@@ -92,73 +92,91 @@ export const createHourDisplay = (data) => {
   const hourLabels = createHourLabel()
   sliderContainer.appendChild(hourLabels)
 
-  const allHoursContainer = document.createElement('div')
-  allHoursContainer.classList.add('all-hours-container')
-  
-  const slider = document.createElement('div')
-  slider.classList.add('slider')
-  allHoursContainer.appendChild(slider)
+  for(let i = 0; i < 3; i++) {
+    let day = createFullDay(data, 2+i)
+    sliderContainer.appendChild(day)
+  }
 
-  const fullSunrise = data[3][0].sunrise
-  const sunrise = Number(fullSunrise.slice(0,2))
-  const fullSunset = data[3][0].sunset
-  const sunset = Number(fullSunset.slice(0,2)) + 12
+  return sliderContainer
+}
+
+const createFullDay = (data, day) => {
+  const container = document.createElement('div')
+  container.classList.add('full-day-container')
+
+  const dateRow = document.createElement('div')
+  dateRow.classList.add('date-row')
+  const tempDate = data[day][0].date
+  const date = new Date(tempDate)
+  const dateString = date.toString().slice(0,10)
+  dateRow.textContent = dateString
+  container.appendChild(dateRow)
+
   const currentHour = data[1]
 
-  for(let i = 0; i < 3; i++) {
-    for(let j = 0; j < 24; j++) {
-      if(i === 0 && j === 0) {
-        j = currentHour
-      }
-      let hour = document.createElement('div')
-      hour.classList.add('single-hour-container')
+  const allHoursCols = document.createElement('div')
+  allHoursCols.classList.add('all-hour-cols')
 
-      let time = document.createElement('div')
-      time.classList.add('hour-time')
-      let hourMin = data[2+i][1][j].hourTime
-      time.textContent = hourMin
-      hour.appendChild(time)
+  const fullSunrise = data[day][0].sunrise
+  const sunrise = Number(fullSunrise.slice(0,2))
+  const fullSunset = data[day][0].sunset
+  const sunset = Number(fullSunset.slice(0,2)) + 12
 
-      let sun = document.createElement('div')
-      sun.classList.add('hour-text')
-      let timeHour = Number(hourMin.slice(0,2)) 
-      if(timeHour === sunrise) {
-        sun.innerHTML = "<span class='material-symbols-outlined sun-icon'>wb_twilight</span>"
-      } else if(timeHour === sunset) {
-        sun.innerHTML = "<span class='material-symbols-outlined sun-icon'>wb_twilight</span>"
-      }
-      hour.appendChild(sun)
-
-      let icon = document.createElement('img')
-      icon.classList.add('hour-icon')
-      icon.src = data[2+i][1][j].hourCondIcon
-      hour.appendChild(icon)
-      
-      let percip = document.createElement('div')
-      percip.classList.add('hour-percip')
-      percip.textContent = data[2+i][1][j].hourPercipMM
-      hour.appendChild(percip)
-
-      let windSpeed = document.createElement('div') 
-      windSpeed.classList.add('hour-wind')
-      windSpeed.textContent = data[2+i][1][j].hourWindKPH
-      hour.appendChild(windSpeed)
-
-      let gust = document.createElement('div')
-      gust.classList.add('hour-text')
-      gust.textContent = data[2+i][1][j].gustKPH
-      hour.appendChild(gust)
-
-      let temp = document.createElement('div')
-      temp.classList.add('hour-text')
-      temp.textContent = data[2+i][1][j].hourTempC
-      hour.appendChild(temp)
-
-      allHoursContainer.appendChild(hour)
-    }
+  let i = 0
+  if(day === 2) {
+    i = currentHour
   }
-  sliderContainer.appendChild(allHoursContainer)
-  return sliderContainer
+  for(; i < 24; i++) {
+    let hour = document.createElement('div')
+    hour.classList.add('hour-col')
+    if(i === 0) {
+      hour.classList.add('midnight-col')
+    }
+
+    let time = document.createElement('div')
+    time.classList.add('hour-time')
+    let hourMin = data[day][1][i].hourTime
+    time.textContent = hourMin
+    hour.appendChild(time)
+
+    let sun = document.createElement('div')
+    sun.classList.add('hour-text')
+    if(currentHour === sunrise) {
+      sun.innerHTML = "<span class='material-symbols-outlined sun-icon'>wb_twilight</span>"
+    } else if(currentHour === sunset) {
+      sun.innerHTML = "<span class='material-symbols-outlined sun-icon'>wb_twilight</span>"
+    }
+    hour.appendChild(sun)
+
+    let icon = document.createElement('img')
+    icon.classList.add('hour-icon')
+    icon.src = data[day][1][i].hourCondIcon
+    hour.appendChild(icon)
+    
+    let percip = document.createElement('div')
+    percip.classList.add('hour-percip')
+    percip.textContent = data[day][1][i].hourPercipMM
+    hour.appendChild(percip)
+
+    let windSpeed = document.createElement('div') 
+    windSpeed.classList.add('hour-wind')
+    windSpeed.textContent = data[day][1][i].hourWindKPH
+    hour.appendChild(windSpeed)
+
+    let gust = document.createElement('div')
+    gust.classList.add('hour-text')
+    gust.textContent = data[day][1][i].gustKPH
+    hour.appendChild(gust)
+
+    let temp = document.createElement('div')
+    temp.classList.add('hour-text')
+    temp.textContent = data[day][1][i].hourTempC
+    hour.appendChild(temp)
+
+    allHoursCols.appendChild(hour)
+  }
+  container.appendChild(allHoursCols)
+  return container
 }
 
 const createHourLabel = () => {
