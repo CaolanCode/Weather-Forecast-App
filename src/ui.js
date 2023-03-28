@@ -86,11 +86,17 @@ export const displayDays = (data) => {
 }
 
 export const createHourDisplay = (data) => {
+  console.log(data)
   const container = document.createElement('div')
   container.classList.add('all-hours-container')
 
   const hourLabels = createHourLabel()
   container.appendChild(hourLabels)
+
+  const fullSunrise = data[1][0].sunrise
+  const sunrise = Number(fullSunrise.slice(0,2))
+  const fullSunset = data[1][0].sunset
+  const sunset = Number(fullSunset.slice(0,2)) + 12
 
   for(let i = 0; i < 3; i++) {
     for(let j = 0; j < 24; j++) {
@@ -99,11 +105,18 @@ export const createHourDisplay = (data) => {
 
       let time = document.createElement('div')
       time.classList.add('hour-time')
-      time.textContent = data[1+i][1][j].hourTime
+      let hourMin = data[1+i][1][j].hourTime
+      time.textContent = hourMin
       hour.appendChild(time)
 
       let sun = document.createElement('div')
       sun.classList.add('hour-text')
+      let timeHour = Number(hourMin.slice(0,2)) 
+      if(timeHour === sunrise) {
+        sun.innerHTML = "<span class='material-symbols-outlined sun-icon'>wb_twilight</span>"
+      } else if(timeHour === sunset) {
+        sun.innerHTML = "<span class='material-symbols-outlined sun-icon'>wb_twilight</span>"
+      }
       hour.appendChild(sun)
 
       let icon = document.createElement('img')

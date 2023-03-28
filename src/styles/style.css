@@ -94,6 +94,14 @@
 .hour-time, .hour-text, .hour-icon, .hour-percip, .hour-wind{
   justify-content: center;
 }
-.hour-label, .icon-label, .measurement-label{
-  justify-content: start;
+.time-label, .hour-label, .icon-label, .measurement-label{
+  padding-right: .5vw;
+  padding-left: .2vw;
+}
+.measurement-label{
+  font-size: .8rem;
+}
+.sun-icon{
+  border: none;
+  color: rgb(255, 230, 0);
 }
