@@ -30,7 +30,7 @@
   border: none;
 }
 
-/* top containers */
+/* day summary containers */
 .city-name{
   display: flex;
   justify-content: center;
@@ -75,7 +75,7 @@
 }
 
 /* hour slide */
-.slider-container, .all-hour-cols{
+.slider-container, .all-days-cols, .day-hour-cols{
   display: flex;
 }
 .slider-container{
@@ -87,7 +87,7 @@
   position: relative;
   margin-top: 3vh;
 }
-.all-hours-cols{
+.all-days-cols{
   margin-bottom: 1vh;
   position: relative;
   overflow-x: scroll;
@@ -122,11 +122,8 @@
   border: none;
   color: rgb(255, 170, 0);
 }
-.midnight-container{
+.midnight-col{
   border-left: 3px solid navy;
-}
-.date-container{
-  flex-grow: 1;
 }
 .date-row{
   height: 3vh;

@@ -92,10 +92,14 @@ export const createHourDisplay = (data) => {
   const hourLabels = createHourLabel()
   sliderContainer.appendChild(hourLabels)
 
+  const allHoursContainer = document.createElement('div')
+  allHoursContainer.classList.add('all-days-cols')
+
   for(let i = 0; i < 3; i++) {
     let day = createFullDay(data, 2+i)
-    sliderContainer.appendChild(day)
+    allHoursContainer.appendChild(day)
   }
+  sliderContainer.appendChild(allHoursContainer)
 
   return sliderContainer
 }
@@ -115,7 +119,7 @@ const createFullDay = (data, day) => {
   const currentHour = data[1]
 
   const allHoursCols = document.createElement('div')
-  allHoursCols.classList.add('all-hour-cols')
+  allHoursCols.classList.add('day-hour-cols')
 
   const fullSunrise = data[day][0].sunrise
   const sunrise = Number(fullSunrise.slice(0,2))
