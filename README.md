@@ -9,4 +9,4 @@
 
 
 ## Screenshot
-[screenshot of webpage](./src/images/screenshot.png)
+![screenshot of webpage](./src/images/screenshot.png)
