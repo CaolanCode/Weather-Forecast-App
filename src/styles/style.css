@@ -186,7 +186,6 @@
 .sun-result, .percip-result, .temp-result{
   border-top: 1px solid var(--navy);
   border-bottom: 1px solid var(--navy);
-
 }
 .active-day .day-title, .day-container:hover .day-title{
   background: var(--light-blue);

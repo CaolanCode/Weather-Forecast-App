@@ -31,14 +31,18 @@ export const displayDays = (data) => {
   for(let i = 0; i < 3; i++) {
     let dayContainer = document.createElement('div')
     dayContainer.classList.add('day-container')
-    // set data attribute 
-    dayContainer.dataset.number = i
+    dayContainer.addEventListener('click', () => {
+      moveSlider(i)
+      const allDay = document.querySelectorAll('.day-container')
+      allDay.forEach(day => day.classList.remove('active-day'))
+      dayContainer.classList.add('active-day')
+    })
     let day = 'Today'
     if(i === 0) {
       dayContainer.classList.add('active-day')
     } else if(i === 1) {
       day = 'Tomorrow'
-    } else if(i > 1) {
+    } else {
       const dateString = data[2+i][0].date
       const date = new Date(dateString)
       const weekday = new Array(7)
@@ -109,7 +113,6 @@ export const createHourDisplay = (data) => {
 }
 
 const createFullDay = (data, day) => {
-  console.log(data)
   const container = document.createElement('div')
   container.classList.add('full-day-container')
 
@@ -275,4 +278,22 @@ const createHourLabel = () => {
   hourLabels.appendChild(tempContainer)
 
   return hourLabels
+}
+
+const moveSlider = (day) => {
+  const slider = document.querySelector('.all-days-cols')
+  const allDays =document.querySelectorAll('.full-day-container')
+  switch(day){
+    case 0:
+      slider.scrollLeft = 0
+      break;
+    case 1:
+      const dayOneWidth = allDays[0].offsetWidth
+      slider.scrollLeft = dayOneWidth
+      break;
+    case 2:
+      const oneTwoWidth = allDays[0].offsetWidth + allDays[1].offsetWidth
+      slider.scrollLeft = oneTwoWidth
+      break;
+  }
 }
