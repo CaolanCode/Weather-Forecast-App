@@ -63,15 +63,15 @@ export const displayDays = (data) => {
     const maxTemp = document.createElement('div')
     maxTemp.classList.add('day-temp')
     maxTemp.classList.add('max-temp')
-    const max = data[2+i][0].maxTempC
-    const min = data[2+i][0].minTempC
-    maxTemp.innerText = max
+    const max = Math.round(data[2+i][0].maxTempC)
+    const min = Math.round(data[2+i][0].minTempC)
+    maxTemp.innerText = max + '°C'
     tempContainer.appendChild(maxTemp)
     if(max !== min) {
       const minTemp = document.createElement('div')
       minTemp.classList.add('day-temp')
       minTemp.classList.add('min-temp')
-      minTemp.innerText = min
+      minTemp.innerText = min + '°C'
       tempContainer.appendChild(minTemp)
     }
     dayContainer.appendChild(tempContainer)
@@ -170,19 +170,19 @@ const createFullDay = (data, day) => {
     let windSpeed = document.createElement('div') 
     windSpeed.classList.add('wind-result')
     windSpeed.classList.add('big-result')
-    windSpeed.textContent = data[day][1][i].hourWindKPH
+    windSpeed.textContent = Math.round(data[day][1][i].hourWindKPH)
     hour.appendChild(windSpeed)
 
     let gust = document.createElement('div')
     gust.classList.add('gust-result')
     gust.classList.add('small-result')
-    gust.textContent = data[day][1][i].gustKPH
+    gust.textContent = Math.round(data[day][1][i].gustKPH)
     hour.appendChild(gust)
 
     let temp = document.createElement('div')
     temp.classList.add('temp-result')
     temp.classList.add('big-result')
-    let tempValue = data[day][1][i].hourTempC
+    let tempValue = Math.round(data[day][1][i].hourTempC)
     temp.textContent = tempValue
     if(tempValue <= 2) {
       temp.style.backgroundColor = '#05C5FD'

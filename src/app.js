@@ -32,5 +32,6 @@ inputBtn.addEventListener('click', async () => {
   // hours
   const hourSlide = createHourDisplay(data)
   document.body.appendChild(hourSlide)
+  // clear previous location
   input.value = ''
 })
