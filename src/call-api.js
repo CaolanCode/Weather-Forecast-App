@@ -8,10 +8,11 @@ export async function getWeatherData(city) {
 export async function parseWeatherData(city) {
   try{
     const weatherData = await getWeatherData(city)
+    console.log(weatherData)
     // location
     const name = weatherData.location.name
     // time 
-    const dateTime = weatherData.location.localtime
+    const dateTime = weatherData.current.last_updated
     const time = Number(dateTime.slice(11,13))
     // forecast average/min/max
     const forecast = [name, time]

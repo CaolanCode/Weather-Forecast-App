@@ -130,7 +130,7 @@ const createFullDay = (data, day) => {
   if(day === 2) {
     i = currentHour
   }
-  for(; i < 24; i++) {
+  while(i < 24) {
     let hour = document.createElement('div')
     hour.classList.add('hour-col')
     if(i === 0) {
@@ -178,6 +178,7 @@ const createFullDay = (data, day) => {
     hour.appendChild(temp)
 
     allHoursCols.appendChild(hour)
+    i++;
   }
   container.appendChild(allHoursCols)
   return container
