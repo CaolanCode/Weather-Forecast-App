@@ -145,9 +145,9 @@ const createFullDay = (data, day) => {
 
     let sun = document.createElement('div')
     sun.classList.add('hour-text')
-    if(currentHour === sunrise) {
+    if(i === sunrise) {
       sun.innerHTML = "<span class='material-symbols-outlined sun-icon'>wb_twilight</span>"
-    } else if(currentHour === sunset) {
+    } else if(i === sunset) {
       sun.innerHTML = "<span class='material-symbols-outlined sun-icon'>wb_twilight</span>"
     }
     hour.appendChild(sun)
