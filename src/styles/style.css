@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+:root{
+  --gray:#f5f5f5;
+  --navy:#000080;
+  --aqua:#00FFFF;
+}
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid black;
+  font-family: 'Roboto Condensed', sans-serif;
+  /*border: 1px solid black;*/
 }
 
 /* header */
@@ -10,12 +19,16 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 1.5vh 0;
+  font-size: 2rem;
+  font-weight: 400;
 }
 .input-container{
   display: flex;
   align-items: center;
   padding: 1vh 1vw;
   border-radius: 3vh;
+  border: 1px solid ;
 }
 .location-input{
   padding: 1vh 0;
@@ -36,16 +49,21 @@
   justify-content: center;
   align-items: center;
   grid-column: 1 / span 3;
+  font-size: 1.5rem;
 }
 .days-container{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
+  padding: 1vh 0;
 }
 .day-container{
   width: 15vw;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-top: 1vh;
+  border-radius: 3vh;
+  padding-bottom: 1vh;
 }
 .day-title, .day-condition{
   grid-column: 1 / span 2;
@@ -54,6 +72,7 @@
 .temp-container{
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .day-temp{
   flex: 1;
@@ -62,6 +81,7 @@
   display: flex;
   justify-content: center;
   font-size: .8rem;
+  width: 3vw;
 }
 .max-temp{
   align-items: end;
@@ -72,6 +92,10 @@
 }
 .day-icon{
   width: 100%;
+}
+.day-title{
+  padding: 1vh 0;
+  border-radius: 1vh;
 }
 
 /* hour slide */
@@ -86,6 +110,8 @@
   height: 100%;
   position: relative;
   margin-top: 3vh;
+  width: 150px;
+  min-width: 100px;
 }
 .all-days-cols{
   margin-bottom: 1vh;
@@ -96,27 +122,32 @@
 }
 
 /* hour containers */
-.hour-time, .time-label, .hour-text, .hour-label, .measurement-label{
+.small-result, .small-label{
   height: 3vh;
 }
-.hour-icon, .icon-label, .hour-wind, .hour-percip{
+.big-result, .big-label{
   height: 6vh;
 }
-.hour-icon{
+.multi-label{
+  height: 9vh;
+}
+.icon-result{
   display: block;
 }
-.hour-time, .time-label, .hour-text, .hour-label, .measurement-label, .hour-icon, .icon-label, .hour-wind, .hour-percip{
+.big-result, .small-result, .small-label, .multi-label, .big-label{
   display: flex;
   align-items: center;
 }
-.hour-time, .hour-text, .hour-icon, .hour-percip, .hour-wind{
+.big-result, .small-result{
   justify-content: center;
 }
-.time-label, .hour-label, .icon-label, .measurement-label{
-  width: 10vw;
+.multi-label, .big-label{
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
 }
 .measurement-label{
-  font-size: .8rem;
+  font-size: .7rem;
 }
 .sun-icon{
   border: none;
@@ -127,4 +158,30 @@
 }
 .date-row{
   height: 3vh;
+}
+.small-label, .big-label, .multi-label, .big-result, .small-result{
+  padding: 0 .2vw;
+}
+/* colour scheme */
+
+.header-container, .day-title, .small-label, .big-label, .multi-label{
+  background: var(--navy);
+  color: white;
+}
+.day-container{
+  background: var(--gray);
+}
+.input-container{
+  background: white;
+}
+.big-label, .multi-label, .small-label{
+  border: .5px solid white;
+}
+.big-result, .gust-result{
+  background: var(--gray);
+}
+.sun-result, .percip-result, .temp-result{
+  border-top: 1px solid var(--navy);
+  border-bottom: 1px solid var(--navy);
+
 }
