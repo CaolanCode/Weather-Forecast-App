@@ -180,7 +180,7 @@ const createFullDay = (data, day) => {
 
     let temp = document.createElement('div')
     temp.classList.add('temp-result')
-    temp.classList.add('small-result')
+    temp.classList.add('big-result')
     temp.textContent = data[day][1][i].hourTempC
     hour.appendChild(temp)
 
@@ -242,10 +242,19 @@ const createHourLabel = () => {
   windContainer.appendChild(gustLabel)
   hourLabels.appendChild(windContainer)
 
+  const tempContainer = document.createElement('div')
+  tempContainer.classList.add('big-label')
+
   const tempLabel = document.createElement('div')
-  tempLabel.classList.add('small-label')
   tempLabel.textContent = 'Temperature'
-  hourLabels.appendChild(tempLabel)
+  tempContainer.appendChild(tempLabel)
+
+  const tempMeasure = document.createElement('div')
+  tempMeasure.classList.add('measurement-label')
+  tempMeasure.setAttribute('id', 'temp-measurement')
+  tempMeasure.textContent = '°C'
+  tempContainer.appendChild(tempMeasure)
+  hourLabels.appendChild(tempContainer)
 
   return hourLabels
 }

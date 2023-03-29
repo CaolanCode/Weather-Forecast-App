@@ -62,7 +62,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 1vh;
-  border-radius: 3vh;
+  border-radius: 2vh;
   padding-bottom: 1vh;
 }
 .day-title, .day-condition{
@@ -80,7 +80,7 @@
 .min-temp, .max-temp{
   display: flex;
   justify-content: center;
-  font-size: .8rem;
+  font-size: .9rem;
   width: 3vw;
 }
 .max-temp{
@@ -140,6 +140,7 @@
 }
 .big-result, .small-result{
   justify-content: center;
+  border-right: 1px solid white;
 }
 .multi-label, .big-label{
   flex-direction: column;
@@ -154,10 +155,11 @@
   color: rgb(255, 170, 0);
 }
 .midnight-col{
-  border-left: 3px solid navy;
+  border-left: 2px solid var(--navy);
 }
 .date-row{
   height: 3vh;
+  padding-left: .5vw;
 }
 .small-label, .big-label, .multi-label, .big-result, .small-result{
   padding: 0 .2vw;
