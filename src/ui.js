@@ -105,6 +105,7 @@ export const createHourDisplay = (data) => {
 }
 
 const createFullDay = (data, day) => {
+  console.log(data)
   const container = document.createElement('div')
   container.classList.add('full-day-container')
 
@@ -181,7 +182,20 @@ const createFullDay = (data, day) => {
     let temp = document.createElement('div')
     temp.classList.add('temp-result')
     temp.classList.add('big-result')
-    temp.textContent = data[day][1][i].hourTempC
+    let tempValue = data[day][1][i].hourTempC
+    temp.textContent = tempValue
+    if(tempValue <= 2) {
+      temp.style.backgroundColor = '#05C5FD'
+    } else if(tempValue <= 7) {
+      temp.style.backgroundColor = '#f7f76f'
+    } else if(tempValue <= 14) {
+      temp.style.backgroundColor = '#FDEA05'
+    } else if (tempValue <= 20) {
+      temp.style.backgroundColor = '#FD7A05'
+    } else {
+      console.log('high')
+      temp.style.backgroundColor = '#ff0000'
+    }
     hour.appendChild(temp)
 
     allHoursCols.appendChild(hour)
