@@ -2,7 +2,7 @@
 
 - Retrieves weather forecast from weatherAPI.com
 - Displays forecast in a elegant way using a horizontal scrollbar
-- Move the scroll bar to a chosen day by click the desired day
+- Move the scrollbar to a chosen day by clicking the desired day
 - Change between Fahrenheit and Celsius using buttons 
 
 ## Link
