@@ -107,7 +107,10 @@ export const createHourDisplay = (data) => {
     let day = createFullDay(data, 2+i)
     allHoursContainer.appendChild(day)
   }
+  const tempButtons = createTempBtns()
+
   sliderContainer.appendChild(allHoursContainer)
+  sliderContainer.appendChild(tempButtons)
 
   return sliderContainer
 }
@@ -296,4 +299,40 @@ const moveSlider = (day) => {
       slider.scrollLeft = oneTwoWidth
       break;
   }
+}
+
+const createTempBtns = () => {
+  // celcius - fahrenheit
+  const buttonContainer = document.createElement('div')
+  buttonContainer.classList.add('temp-btn-container')
+  const celcius = document.createElement('button')
+  celcius.setAttribute('id', 'celcius-btn')
+  celcius.classList.add('temp-btn')
+  celcius.classList.add('active-temp-btn')
+  celcius.textContent = '°C'
+  const fahrenheit = document.createElement('button')
+  fahrenheit.setAttribute('id', 'fahr-btn')
+  fahrenheit.classList.add('temp-btn')
+  fahrenheit.textContent = '°F'
+  // listeners
+  celcius.addEventListener('click', () => {
+    changeToCelc()
+    celcius.classList.toggle('active-temp-btn')
+    fahrenheit.classList.toggle('active-temp-btn')
+  })
+  fahrenheit.addEventListener('click', () => {
+    changeToFahr()
+    fahrenheit.classList.toggle('active-temp-btn')
+    celcius.classList.toggle('active-temp-btn')
+  })
+  buttonContainer.appendChild(celcius)
+  buttonContainer.appendChild(fahrenheit)
+  return buttonContainer
+}
+const changeToCelc = () => {
+
+}
+
+const changeToFahr = () => {
+
 }

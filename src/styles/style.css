@@ -42,6 +42,32 @@
   cursor: pointer;
   border: none;
 }
+.temp-btn-container{
+  display: flex;
+  align-items: center;
+  gap: .3vw;
+  position: absolute;
+  bottom: 3vh;
+  right: 3vw;
+}
+.temp-btn{
+  color: black;
+  background-color: rgb(240, 233, 233);
+  border: none;
+  padding: .3vh .4vw;
+  cursor: pointer;
+}
+#celcius-btn{
+  border-bottom-left-radius: 1vh;
+  border-top-left-radius: 1vh;
+}
+#fahr-btn{
+  border-bottom-right-radius: 1vh;
+  border-top-right-radius: 1vh;
+}
+.active-temp-btn{
+  background: rgb(215, 215, 215);
+}
 
 /* day summary containers */
 .city-name{
