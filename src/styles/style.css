@@ -3,7 +3,7 @@
 :root{
   --gray:#f5f5f5;
   --navy:#000080;
-  --aqua:#00FFFF;
+  --light-blue:#05bcff;
 }
 
 *{
@@ -64,6 +64,7 @@
   margin-top: 1vh;
   border-radius: 2vh;
   padding-bottom: 1vh;
+  cursor: pointer;
 }
 .day-title, .day-condition{
   grid-column: 1 / span 2;
@@ -186,4 +187,7 @@
   border-top: 1px solid var(--navy);
   border-bottom: 1px solid var(--navy);
 
+}
+.active-day .day-title, .day-container:hover .day-title{
+  background: var(--light-blue);
 }

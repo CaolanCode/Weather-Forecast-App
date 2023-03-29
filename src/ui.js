@@ -29,8 +29,14 @@ export const displayDays = (data) => {
   city.innerText = data[0]
   container.appendChild(city)
   for(let i = 0; i < 3; i++) {
+    let dayContainer = document.createElement('div')
+    dayContainer.classList.add('day-container')
+    // set data attribute 
+    dayContainer.dataset.number = i
     let day = 'Today'
-    if(i === 1) {
+    if(i === 0) {
+      dayContainer.classList.add('active-day')
+    } else if(i === 1) {
       day = 'Tomorrow'
     } else if(i > 1) {
       const dateString = data[2+i][0].date
@@ -45,8 +51,6 @@ export const displayDays = (data) => {
       weekday[6]="Saturday";
       day = weekday[date.getDay()];
     }
-    let dayContainer = document.createElement('div')
-    dayContainer.classList.add('day-container')
     // day
     const dayTitle = document.createElement('div')
     dayTitle.classList.add('day-title')
