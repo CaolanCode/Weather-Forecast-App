@@ -21,10 +21,10 @@ export async function parseWeatherData(city) {
       const sunrise = weatherData.forecast.forecastday[i].astro.sunrise
       const sunset = weatherData.forecast.forecastday[i].astro.sunset
       const date = weatherData.forecast.forecastday[i].date
-      const minTempC = weatherData.forecast.forecastday[i].day.mintemp_c
-      const minTempF = weatherData.forecast.forecastday[i].day.mintemp_f
-      const maxTempC = weatherData.forecast.forecastday[i].day.maxtemp_c
-      const maxTempF = weatherData.forecast.forecastday[i].day.maxtemp_f
+      const minTempC = Math.round(weatherData.forecast.forecastday[i].day.mintemp_c)
+      const minTempF = Math.round(weatherData.forecast.forecastday[i].day.mintemp_f)
+      const maxTempC = Math.round(weatherData.forecast.forecastday[i].day.maxtemp_c)
+      const maxTempF = Math.round(weatherData.forecast.forecastday[i].day.maxtemp_f)
       const condIcon = weatherData.forecast.forecastday[i].day.condition.icon
       const condName = weatherData.forecast.forecastday[i].day.condition.text
       const summary = {moonrise, moonset, sunrise, sunset, date, minTempC, minTempF, maxTempC, maxTempF, condIcon, condName}
@@ -34,16 +34,15 @@ export async function parseWeatherData(city) {
         const hourCondIcon = weatherData.forecast.forecastday[i].hour[j].condition.icon
         const hourPercipIn = weatherData.forecast.forecastday[i].hour[j].precip_in
         const hourPercipMM = weatherData.forecast.forecastday[i].hour[j].precip_mm
-        const hourTempC = weatherData.forecast.forecastday[i].hour[j].temp_c
-        const hourTempF = weatherData.forecast.forecastday[i].hour[j].temp_f
+        const hourTempC = Math.round(weatherData.forecast.forecastday[i].hour[j].temp_c)
+        const hourTempF = Math.round(weatherData.forecast.forecastday[i].hour[j].temp_f)
         const hourDateTime = weatherData.forecast.forecastday[i].hour[j].time
         const hourTime = hourDateTime.substring(hourDateTime.length - 5)
-        const hourWindKPH = weatherData.forecast.forecastday[i].hour[j].wind_kph
-        const hourWindMPH = weatherData.forecast.forecastday[i].hour[j].wind_mph
-        const gustKPH = weatherData.forecast.forecastday[i].hour[j].gust_kph
-        const gustMPH = weatherData.forecast.forecastday[i].hour[j].gust_mph
-        const windDegree = weatherData.forecast.forecastday[i].hour[j].wind_degree
-        const hour = {hourCondIcon, hourPercipIn, hourPercipMM, hourTempC, hourTempF, hourTime, hourWindKPH, hourWindMPH, gustKPH, gustMPH, windDegree}
+        const hourWindKPH = Math.round(weatherData.forecast.forecastday[i].hour[j].wind_kph)
+        const hourWindMPH = Math.round(weatherData.forecast.forecastday[i].hour[j].wind_mph)
+        const gustKPH = Math.round(weatherData.forecast.forecastday[i].hour[j].gust_kph)
+        const gustMPH = Math.round(weatherData.forecast.forecastday[i].hour[j].gust_mph)
+        const hour = {hourCondIcon, hourPercipIn, hourPercipMM, hourTempC, hourTempF, hourTime, hourWindKPH, hourWindMPH, gustKPH, gustMPH}
         hours.push(hour)
       }
       const day = [summary, hours]

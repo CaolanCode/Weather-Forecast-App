@@ -71,8 +71,8 @@ export const displayDays = (data) => {
     const maxTemp = document.createElement('div')
     maxTemp.classList.add('day-temp')
     maxTemp.classList.add('max-temp')
-    const max = Math.round(data[2+i][0].maxTempC)
-    const min = Math.round(data[2+i][0].minTempC)
+    const max = data[2+i][0].maxTempC
+    const min = data[2+i][0].minTempC
     maxTemp.innerText = max + '°C'
     tempContainer.appendChild(maxTemp)
     if(max !== min) {
@@ -107,7 +107,7 @@ export const createHourDisplay = (data) => {
     let day = createFullDay(data, 2+i)
     allHoursContainer.appendChild(day)
   }
-  const tempButtons = createTempBtns()
+  const tempButtons = createTempBtns(data)
 
   sliderContainer.appendChild(allHoursContainer)
   sliderContainer.appendChild(tempButtons)
@@ -180,19 +180,19 @@ const createFullDay = (data, day) => {
     let windSpeed = document.createElement('div') 
     windSpeed.classList.add('wind-result')
     windSpeed.classList.add('big-result')
-    windSpeed.textContent = Math.round(data[day][1][i].hourWindKPH)
+    windSpeed.textContent = data[day][1][i].hourWindKPH
     hour.appendChild(windSpeed)
 
     let gust = document.createElement('div')
     gust.classList.add('gust-result')
     gust.classList.add('small-result')
-    gust.textContent = Math.round(data[day][1][i].gustKPH)
+    gust.textContent = data[day][1][i].gustKPH
     hour.appendChild(gust)
 
     let temp = document.createElement('div')
     temp.classList.add('temp-result')
     temp.classList.add('big-result')
-    let tempValue = Math.round(data[day][1][i].hourTempC)
+    let tempValue = data[day][1][i].hourTempC
     temp.textContent = tempValue
     if(tempValue <= 2) {
       temp.style.backgroundColor = '#05C5FD'
@@ -301,7 +301,7 @@ const moveSlider = (day) => {
   }
 }
 
-const createTempBtns = () => {
+const createTempBtns = (data) => {
   // celcius - fahrenheit
   const buttonContainer = document.createElement('div')
   buttonContainer.classList.add('temp-btn-container')
@@ -316,12 +316,12 @@ const createTempBtns = () => {
   fahrenheit.textContent = '°F'
   // listeners
   celcius.addEventListener('click', () => {
-    changeToCelc()
+    changeMeasurements(data, 'C')
     celcius.classList.toggle('active-temp-btn')
     fahrenheit.classList.toggle('active-temp-btn')
   })
   fahrenheit.addEventListener('click', () => {
-    changeToFahr()
+    changeMeasurements(data, 'F')
     fahrenheit.classList.toggle('active-temp-btn')
     celcius.classList.toggle('active-temp-btn')
   })
@@ -329,10 +329,53 @@ const createTempBtns = () => {
   buttonContainer.appendChild(fahrenheit)
   return buttonContainer
 }
-const changeToCelc = () => {
 
-}
-
-const changeToFahr = () => {
-
+const changeMeasurements = (data, choice) => {
+  const maxTempDay = document.querySelectorAll('.max-temp')
+  const minTempDay = document.querySelectorAll('.min-temp')
+  const percip = document.querySelectorAll('.percip-result')
+  const wind = document.querySelectorAll('.wind-result')
+  const gust = document.querySelectorAll('.gust-result')
+  const temp = document.querySelectorAll('.temp-result')
+  const windMeasurement = document.getElementById('wind-measurement')
+  const tempMeasurement = document.getElementById('temp-measurement')
+  const percipMeasurement = document.getElementById('percip-measurement')
+  let j = data[1]
+  if(choice === 'F') {
+    percipMeasurement.textContent = 'in'
+    tempMeasurement.textContent = '°F'
+    windMeasurement.textContent = 'Mph'
+    for(let i = 0; i < 3; i++) {
+      maxTempDay[i].textContent = data[2+i][0].maxTempF + '°F' 
+      minTempDay[i].textContent = data[2+i][0].minTempF + '°F'
+    }
+    for(let i = 0; i < 3; i++) {
+      while(j < 24) {
+        percip[j].textContent = data[i+2][1][j].hourPercipIn
+        wind[j].textContent = data[i+2][1][j].hourWindMPH
+        gust[j].textContent = data[i+2][1][j].gustMPH
+        temp[j].textContent = data[i+2][1][j].hourTempF
+        j++
+      }
+      j = 0
+    }
+  } else {
+    percipMeasurement.textContent = 'mm'
+    tempMeasurement.textContent = '°C'
+    windMeasurement.textContent = 'Km/h'
+    for(let i = 0; i < 3; i++) {
+      maxTempDay[i].textContent = data[2+i][0].maxTempC + '°C' 
+      minTempDay[i].textContent = data[2+i][0].minTempC + '°C'
+    }
+    for(let i = 0; i < 3; i++) {
+      while(j < 24) {
+        percip[j].textContent = data[i+2][1][j].hourPercipMM
+        wind[j].textContent = data[i+2][1][j].hourWindKPH
+        gust[j].textContent = data[i+2][1][j].gustKPH
+        temp[j].textContent = data[i+2][1][j].hourTempC
+        j++
+      }
+      j = 0
+    }
+  }
 }
