@@ -11,11 +11,7 @@ document.head.appendChild(link)
 
 document.body.appendChild(header())
 
-// location input
-const inputBtn = document.querySelector('.input-btn')
-inputBtn.addEventListener('click', async () => {
-  const input = document.querySelector('.location-input')
-  const city = input.value
+const displayLocation = async (city) => {
   const data = await parseWeatherData(city)
   // clear screen
   const prevDays = document.querySelector('.days-container')
@@ -33,5 +29,25 @@ inputBtn.addEventListener('click', async () => {
   const hourSlide = createHourDisplay(data)
   document.body.appendChild(hourSlide)
   // clear previous location
+  localStorage.clear()
+  localStorage.setItem('location', city)
+}
+
+// localStorage
+if(typeof(Storage) !== 'undefined') {
+  const storedCity = localStorage.getItem('location')
+  if(storedCity) {
+    displayLocation(storedCity)
+  } else {
+    displayLocation('Dublin')
+  }
+}
+
+// location input
+const inputBtn = document.querySelector('.input-btn')
+inputBtn.addEventListener('click', () => {
+  const input = document.querySelector('.location-input')
+  const city = input.value
+  displayLocation(city)
   input.value = ''
 })
