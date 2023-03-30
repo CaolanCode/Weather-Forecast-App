@@ -20,8 +20,6 @@ export async function parseWeatherData(city) {
     // forecast average/min/max
     const forecast = [name, time]
     for(let i = 0; i < 3; i++) {
-      const moonrise = weatherData.forecast.forecastday[i].astro.moonrise
-      const moonset = weatherData.forecast.forecastday[i].astro.moonset
       const sunrise = weatherData.forecast.forecastday[i].astro.sunrise
       const sunset = weatherData.forecast.forecastday[i].astro.sunset
       const date = weatherData.forecast.forecastday[i].date
@@ -31,7 +29,7 @@ export async function parseWeatherData(city) {
       const maxTempF = Math.round(weatherData.forecast.forecastday[i].day.maxtemp_f)
       const condIcon = weatherData.forecast.forecastday[i].day.condition.icon
       const condName = weatherData.forecast.forecastday[i].day.condition.text
-      const summary = {moonrise, moonset, sunrise, sunset, date, minTempC, minTempF, maxTempC, maxTempF, condIcon, condName}
+      const summary = {sunrise, sunset, date, minTempC, minTempF, maxTempC, maxTempF, condIcon, condName}
       // forecast pre hour
       const hours = []
       for(let j = 0; j < 24; j++) {
