@@ -6,7 +6,8 @@
 - Change between Fahrenheit and Celsius using buttons 
 - Stores last input in localStorage
 
-## Link (github pages currently down)
+## Link 
+[View Demo](https://caolancode.github.io/Weather-Forecast-App/)
 
 
 ## Screenshot
