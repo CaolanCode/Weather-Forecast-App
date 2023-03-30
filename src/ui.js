@@ -341,6 +341,7 @@ const changeMeasurements = (data, choice) => {
   const tempMeasurement = document.getElementById('temp-measurement')
   const percipMeasurement = document.getElementById('percip-measurement')
   let j = data[1]
+  let k = 0
   if(choice === 'F') {
     percipMeasurement.textContent = 'in'
     tempMeasurement.textContent = '°F'
@@ -351,11 +352,12 @@ const changeMeasurements = (data, choice) => {
     }
     for(let i = 0; i < 3; i++) {
       while(j < 24) {
-        percip[j].textContent = data[i+2][1][j].hourPercipIn
-        wind[j].textContent = data[i+2][1][j].hourWindMPH
-        gust[j].textContent = data[i+2][1][j].gustMPH
-        temp[j].textContent = data[i+2][1][j].hourTempF
+        percip[k].innerText = data[i+2][1][j].hourPercipIn
+        wind[k].innerText = data[i+2][1][j].hourWindMPH
+        gust[k].innerText = data[i+2][1][j].gustMPH
+        temp[k].innerText = data[i+2][1][j].hourTempF
         j++
+        k++
       }
       j = 0
     }
@@ -369,11 +371,12 @@ const changeMeasurements = (data, choice) => {
     }
     for(let i = 0; i < 3; i++) {
       while(j < 24) {
-        percip[j].textContent = data[i+2][1][j].hourPercipMM
-        wind[j].textContent = data[i+2][1][j].hourWindKPH
-        gust[j].textContent = data[i+2][1][j].gustKPH
-        temp[j].textContent = data[i+2][1][j].hourTempC
+        percip[k].innerText = data[i+2][1][j].hourPercipMM
+        wind[k].innerText = data[i+2][1][j].hourWindKPH
+        gust[k].innerText = data[i+2][1][j].gustKPH
+        temp[k].innerText = data[i+2][1][j].hourTempC
         j++
+        k++
       }
       j = 0
     }
