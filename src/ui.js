@@ -203,7 +203,6 @@ const createFullDay = (data, day) => {
     } else if (tempValue <= 20) {
       temp.style.backgroundColor = '#FD7A05'
     } else {
-      console.log('high')
       temp.style.backgroundColor = '#ff0000'
     }
     hour.appendChild(temp)

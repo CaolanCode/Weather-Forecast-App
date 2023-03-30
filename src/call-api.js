@@ -2,7 +2,11 @@ export async function getWeatherData(city) {
   const apiKey = "b08d495197a947a5a54161628232303"
   const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no&alerts=no`
   const response = await fetch(apiUrl)
-  return response.json()
+  if(!response.ok) {
+    throw new Error('Location not found')
+  }
+  const data = await response.json()
+  return data
 }
 
 export async function parseWeatherData(city) {

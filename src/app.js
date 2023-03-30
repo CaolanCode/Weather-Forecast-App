@@ -12,25 +12,30 @@ document.head.appendChild(link)
 document.body.appendChild(header())
 
 const displayLocation = async (city) => {
-  const data = await parseWeatherData(city)
-  // clear screen
-  const prevDays = document.querySelector('.days-container')
-  const prevHourSlide = document.querySelector('.slider-container')
-  if(prevDays) {
-    prevDays.remove()
+  try{
+    const data = await parseWeatherData(city)
+    // clear screen
+    const prevDays = document.querySelector('.days-container')
+    const prevHourSlide = document.querySelector('.slider-container')
+    if(prevDays) {
+      prevDays.remove()
+    }
+    if(prevHourSlide) {
+      prevHourSlide.remove()
+    }
+    // days
+    const days = displayDays(data)
+    document.body.appendChild(days)
+    // hours
+    const hourSlide = createHourDisplay(data)
+    document.body.appendChild(hourSlide)
+    // clear previous location
+    localStorage.clear()
+    localStorage.setItem('location', city)
+  } catch (error) {
+    console.log(error)
+    alert('Location not found')
   }
-  if(prevHourSlide) {
-    prevHourSlide.remove()
-  }
-  // days
-  const days = displayDays(data)
-  document.body.appendChild(days)
-  // hours
-  const hourSlide = createHourDisplay(data)
-  document.body.appendChild(hourSlide)
-  // clear previous location
-  localStorage.clear()
-  localStorage.setItem('location', city)
 }
 
 // localStorage
@@ -45,9 +50,17 @@ if(typeof(Storage) !== 'undefined') {
 
 // location input
 const inputBtn = document.querySelector('.input-btn')
+const input = document.querySelector('.location-input')
 inputBtn.addEventListener('click', () => {
-  const input = document.querySelector('.location-input')
   const city = input.value
   displayLocation(city)
   input.value = ''
+})
+input.addEventListener('keydown', (event) => {
+  if(event.keyCode === 13) {
+    event.preventDefault()
+    const city = input.value
+    displayLocation(city)
+    input.value = ''
+  }
 })
